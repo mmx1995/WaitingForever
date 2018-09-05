@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--通用头部文件，主要包括引入通用css, js, CSRF 防护， 顶部菜单的定义-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" data-th-fragment="header">
+<head>
+    <meta charset="utf-8">
+    <!-- CSRF 防护-->
+	<meta name="_csrf" th:content="${_csrf.token}"/>
+	<!-- default header name is X-CSRF-TOKEN -->
+	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <!--在下面的部分引入css,js-->
+
+
+</head>
+<body>
+
+    <!--如果已经登陆，则显示用户姓名-->
+    <div sec:authorize="isAuthenticated()"   >
+        <div >
+            <a th:href="@{'/u/' + ${#authentication.name}}"><span sec:authentication="name"></span></a>
+            <div >
+                <a href="/u/mmxin" th:href="@{'/u/' + ${#authentication.name}}">个人主页</a>
+                <a href="/u/mmxin/profile" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >个人设置</a>
+            </div>
+        </div>
+        <form action="/logout" th:action="@{/logout}" method="post">
+            <input type="submit" value="退出">
+        </form>
+    </div>
+
+    <!--如果没有登陆，则显示登陆按钮-->
+    <div sec:authorize="isAnonymous()">
+        <a href="/login">登录</a>
+        <a href="/register">注册</a>
+    </div>
+
+</body>
+</html>
