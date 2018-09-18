@@ -5,15 +5,15 @@
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" data-th-fragment="header">
 <head>
     <meta charset="utf-8">
+    <title>Right Here Waiting For You</title>
     <!-- CSRF 防护-->
 	<meta name="_csrf" th:content="${_csrf.token}"/>
 	<!-- default header name is X-CSRF-TOKEN -->
 	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
     <!--在下面的部分引入css,js-->
-
-
 </head>
 <body>
+<tr th:each="user : ${userList}">
 
     <!--如果已经登陆，则显示用户姓名-->
     <div sec:authorize="isAuthenticated()"   >

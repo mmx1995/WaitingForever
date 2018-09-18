@@ -10,24 +10,34 @@
  
 		<form th:action="@{/register}"  method="post">
 			<h2>注册成为博主</h2>
-			
+
+
 			<div>
-				<label for="username" >账号</label>
-				<input type="text" id="username" name="username" maxlength="50" placeholder="请输入账号，至少3个字符，至多20个">
-	 
+				<label for="phoneNum" >手机号</label>
+				<input type="text" id="phoneNum" name="phoneNum" maxlength="50" placeholder="请输入账号，至少3个字符，至多20个">
+			</div>
+
+			<div>
+				<label for="userName" >昵称</label>
+				<input type="text" id="userName" name="userName" maxlength="50" placeholder="请输入账号，至少3个字符，至多20个">
 			</div>
 			<div >
 				<label for="email" >邮箱</label>
 				<input type="email" id="email" name="email" maxlength="50" placeholder="请输入邮箱">
 			</div>
-			<div>
-				<label for="name" >姓名</label>
-				<input type="text"  id="name" name="name" maxlength="20" placeholder="请输入姓名，至少2个字符，至多20个" >
-			</div>
 			<div >
 				<label for="password" >密码</label>
 				<input type="password" id="password" name="password" maxlength="30" placeholder="请输入密码，字母或特殊符号和数字结合" >
 			</div>
+			<div>
+				<label for="sex">性别</label>
+				<select id="sex" name="sex" th:maxlength="5" required>
+					<option value="1">男</option>
+					<option value="2">女</option>
+				</select>
+
+			</div>
+
 			<div >
 				<button type="submit" >提交</button>
 			</div> 
