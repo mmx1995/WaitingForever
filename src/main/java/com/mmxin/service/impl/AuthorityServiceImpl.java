@@ -1,8 +1,8 @@
 package com.mmxin.service.impl;
 
 
+import com.mmxin.mapper.AuthorityMapper;
 import com.mmxin.pojo.Authority;
-import com.mmxin.repository.AuthorityRepository;
 import com.mmxin.service.AuthorityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +16,11 @@ import org.springframework.stereotype.Service;
 public class AuthorityServiceImpl  implements AuthorityService {
 
     @Autowired
-    private AuthorityRepository authorityRepository;
+    private AuthorityMapper authorityMapper;
 
     @Override
     public Authority getAuthorityById(Long id) {
-        return authorityRepository.getOne(id);
+        return authorityMapper.selectByPrimaryKey(id);
     }
 
 }

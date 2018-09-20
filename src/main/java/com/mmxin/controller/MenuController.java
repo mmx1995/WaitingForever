@@ -1,10 +1,8 @@
 package com.mmxin.controller;
 
 import com.mmxin.pojo.Menu;
-import com.mmxin.repository.MenuRepository;
 import com.mmxin.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -2,8 +2,6 @@ package com.mmxin.service;
 
 
 import com.mmxin.pojo.User;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -19,7 +17,7 @@ public interface UserService {
      * @param user
      * @return
      */
-    User saveUser(User user);
+    int saveUser(User user);
 
     /**
      * 删除用户
@@ -40,7 +38,7 @@ public interface UserService {
      * @param user
      * @return
      */
-    User updateUser(User user);
+    int updateUser(User user);
 
     /**
      * 根据id获取用户
@@ -60,5 +58,5 @@ public interface UserService {
      * @param userName
      * @return
      */
-    Page<User> listUsersByUserNameLike(String userName, Pageable pageable);
+    /*Page<User> listUsersByUserNameLike(String userName, Pageable pageable);*/
 }

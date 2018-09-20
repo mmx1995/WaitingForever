@@ -13,4 +13,6 @@ public interface MenuService {
 
     public List<Menu> getInUseMenu();
 
+    public List<Menu> getByPosition(String position);
+
 }

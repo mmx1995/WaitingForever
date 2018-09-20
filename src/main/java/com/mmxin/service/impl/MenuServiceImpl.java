@@ -1,13 +1,13 @@
 package com.mmxin.service.impl;
 
+import com.mmxin.mapper.MenuMapper;
 import com.mmxin.pojo.Menu;
-import com.mmxin.repository.MenuRepository;
 import com.mmxin.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
+
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 /**
@@ -19,11 +19,16 @@ import java.util.List;
 public class MenuServiceImpl implements MenuService {
 
     @Autowired
-    MenuRepository menuRepository ;
+    MenuMapper menuMapper ;
 
     @Override
     public List<Menu> getInUseMenu() {
-        List<Menu> list = menuRepository.findByInUse(true);
+        List<Menu> list = menuMapper.getMenuInUse();
         return list;
+    }
+
+    @Override
+    public List<Menu> getByPosition(String position) {
+        return menuMapper.getMenuByPosition(position);
     }
 }
