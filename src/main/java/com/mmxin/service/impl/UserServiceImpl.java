@@ -1,6 +1,8 @@
 package com.mmxin.service.impl;
 
+import com.mmxin.mapper.UserAuthorityMapper;
 import com.mmxin.mapper.UserMapper;
+import com.mmxin.pojo.Authority;
 import com.mmxin.pojo.User;
 import com.mmxin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     private UserMapper userMapper;
+    private UserAuthorityMapper userAuthorityMapper ;
 
     @Transactional
     @Override
@@ -32,7 +35,11 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         PasswordEncoder encoder = new BCryptPasswordEncoder();
         password = encoder.encode(password);
         user.setPassword(password);
-        return userMapper.insert(user);
+        userMapper.insert(user);
+        for (Authority a: user.getAuthoritiesList()){
+            userAuthorityMapper.insert(user.getId() , a.getId());
+        }
+        return 1 ;
     }
 
     @Transactional

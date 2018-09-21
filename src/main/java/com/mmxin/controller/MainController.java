@@ -5,6 +5,7 @@ import com.mmxin.pojo.User;
 import com.mmxin.service.AuthorityService;
 import com.mmxin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +42,7 @@ public class MainController {
     @PostMapping("register")
     public String addUser(User user){
         List<Authority> authorities = new ArrayList<>();
+        //权限增加
         authorities.add(authorityService.getAuthorityById(ROLE_USER_AUTHORITY_ID));
         user.setAuthorities(authorities);
         userService.saveUser(user);

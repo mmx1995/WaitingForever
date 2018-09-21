@@ -37,15 +37,18 @@
     delete from user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="com.mmxin.pojo.User" >
-    insert into user (id, avatar, email, 
+  <insert id="insert" parameterType="com.mmxin.pojo.User" keyProperty="id" useGeneratedKeys="true" >
+    insert into user (avatar, email,
       password, phone_num, sex, 
       user_name, updateTime, createTime
       )
-    values (#{id,jdbcType=BIGINT}, #{avatar,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
+    values (#{avatar,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR},
       #{password,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
       #{userName,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}
       )
+      <selectKey resultType="java.lang.Long" keyProperty="id">
+          SELECT LAST_INSERT_ID()
+      </selectKey>
   </insert>
   <insert id="insertSelective" parameterType="com.mmxin.pojo.User" >
     

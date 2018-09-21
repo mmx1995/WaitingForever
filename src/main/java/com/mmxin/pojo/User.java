@@ -189,4 +189,11 @@ public class User implements Serializable,UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    /**
+     * 获取权限ID列表，新增客户时使用
+     * */
+    public List<Authority> getAuthoritiesList(){
+        return this.authorities;
+    }
 }

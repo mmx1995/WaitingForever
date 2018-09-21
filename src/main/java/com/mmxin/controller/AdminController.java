@@ -2,6 +2,7 @@ package com.mmxin.controller;
 
 import com.mmxin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,10 +19,12 @@ import java.util.List;
  */
 @Controller
 @RequestMapping("admin")
+@PreAuthorize("hasAuthority('ROLE_ADMIN')")  // 指定角色权限才能操作方法
 public class AdminController {
 
     @Autowired
     UserService  userService ;
+
 
     @GetMapping
     public String index(){
