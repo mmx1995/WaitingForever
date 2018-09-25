@@ -13,8 +13,6 @@
     <!--在下面的部分引入css,js-->
 </head>
 <body>
-<tr th:each="user : ${userList}">
-
     <!--如果已经登陆，则显示用户姓名-->
     <div sec:authorize="isAuthenticated()"   >
         <div >

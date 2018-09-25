@@ -29,8 +29,6 @@ import java.util.Map;
 @EnableWebSecurity
 @EnableTransactionManagement(proxyTargetClass = true)
 @MapperScan("com.mmxin.mapper")
-@ComponentScan
-@EnableAutoConfiguration
 public class MmxinApplication {
 
     public static void main(String[] args) {
@@ -73,7 +71,7 @@ public class MmxinApplication {
         DruidDataSource druidDataSource = new DruidDataSource();
         druidDataSource.setUsername("root");
         druidDataSource.setPassword("root");
-        druidDataSource.setUrl("jdbc:mysql://192.168.136.4:3306/WaitingForever?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8");
+        druidDataSource.setUrl("jdbc:mysql://127.0.0.1:3306/WaitingForever?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8");
         druidDataSource.setMaxActive(100);
         druidDataSource.setFilters("stat,wall");
         druidDataSource.setInitialSize(10);
