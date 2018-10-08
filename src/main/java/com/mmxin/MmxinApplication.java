@@ -8,13 +8,12 @@ import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -30,6 +29,22 @@ import java.util.Map;
 @EnableTransactionManagement(proxyTargetClass = true)
 @MapperScan("com.mmxin.mapper")
 public class MmxinApplication {
+
+    @Value("${spring.datasource.druid.url}")
+    String url ;
+
+    @Value("${spring.datasource.druid.username}")
+    String userName ;
+
+    @Value("${spring.datasource.druid.password}")
+    String password ;
+
+    @Value("${spring.datasource.druid.initial-size:10}")
+    int initSize ;
+
+    @Value("${spring.datasource.druid.max-active-size:100}")
+    int maxSize ;
+
 
     public static void main(String[] args) {
         SpringApplication.run(MmxinApplication.class, args);
@@ -69,12 +84,12 @@ public class MmxinApplication {
     @Bean
     public DruidDataSource druidDataSource() throws SQLException {
         DruidDataSource druidDataSource = new DruidDataSource();
-        druidDataSource.setUsername("root");
-        druidDataSource.setPassword("root");
-        druidDataSource.setUrl("jdbc:mysql://127.0.0.1:3306/WaitingForever?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8");
-        druidDataSource.setMaxActive(100);
+        druidDataSource.setUsername(userName);
+        druidDataSource.setPassword(password);
+        druidDataSource.setUrl(url);
+        druidDataSource.setMaxActive(maxSize);
         druidDataSource.setFilters("stat,wall");
-        druidDataSource.setInitialSize(10);
+        druidDataSource.setInitialSize(initSize);
         return druidDataSource;
     }
 
