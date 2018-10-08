@@ -3,9 +3,11 @@ package com.mmxin.controller;
 import com.mmxin.pojo.Menu;
 import com.mmxin.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -24,9 +26,19 @@ public class MenuController {
     @Autowired
     MenuService menuService;
 
+    /**
+     * 获取所有可用的菜单
+     * */
     @GetMapping
-    public @ResponseBody List<Menu> getMenu(){
-        return menuService.getInUseMenu() ;
+    public @ResponseBody List<Menu> getMenu(@RequestParam(value = "position",required = false) String position){
+        if(position == null || position.equals("")){
+            return menuService.getInUseMenu() ;
+        }else{
+            return menuService.getByPosition(position);
+        }
+
     }
+
+
 
 }

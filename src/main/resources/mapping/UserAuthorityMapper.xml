@@ -11,9 +11,8 @@
     <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
-
   <insert id="insert" >
-    insert into user_authority(user_id,authority_id,updateTime,createTime) values(#{userId, authorityId})
+    insert into user_authority(user_id,authority_id,updateTime,createTime) values(#{userId}, #{authorityId})
   </insert>
 
   <select id="selectAuthorityByUserId" parameterType="java.lang.Long" resultMap="AuthorityResultMap">
