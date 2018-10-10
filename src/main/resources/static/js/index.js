@@ -4,7 +4,7 @@ if (curAdd.indexOf('www.dnforever.com') == -1) {
   virtualData = [{
       "id": 1,
       "parentid": null,
-      "title": "测试",
+      "title": "测试-静态",
       "url": "/login",
       "inUse": true,
       "position": null,
@@ -14,7 +14,7 @@ if (curAdd.indexOf('www.dnforever.com') == -1) {
     {
       "id": 2,
       "parentid": null,
-      "title": "测试2",
+      "title": "测试2-静态",
       "url": "/login",
       "inUse": true,
       "position": null,
@@ -27,8 +27,8 @@ if (curAdd.indexOf('www.dnforever.com') == -1) {
     type: 'post',
     url: 'http://www.dnforever.com/menu',
     data: '',
-    success: function() {
-      virtualData = ''
+    success: function(data) {
+      virtualData = data;
     }
   })
 }
