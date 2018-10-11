@@ -11,9 +11,9 @@ spring:
           filters: stat
           driver-class-name: com.mysql.jdbc.Driver
           #基本属性
-          url: jdbc:mysql://192.168.136.4:3306/WaitingForever?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8
+          url: jdbc:mysql://18.218.214.85:3306/WaitingForever?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8
           username: root
-          password: root
+          password: Woshimiaogege@@12
           #配置初始化大小/最小/最大
           initial-size: 1
           min-idle: 1
@@ -37,7 +37,7 @@ spring:
       encoding: UTF-8
     redis:
       database: 0
-      host: 192.168.136.4
+      host: 18.218.214.85
       port: 6379
       password:
 
