@@ -26,7 +26,6 @@ import java.util.Map;
 
 @SpringBootApplication
 @EnableWebSecurity
-@EnableTransactionManagement(proxyTargetClass = true)
 @MapperScan("com.mmxin.mapper")
 public class MmxinApplication {
 

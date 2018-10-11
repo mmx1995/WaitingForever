@@ -5,6 +5,10 @@ import com.mmxin.mapper.UserMapper;
 import com.mmxin.pojo.Authority;
 import com.mmxin.pojo.User;
 import com.mmxin.service.UserService;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
 /**
  * @author : mmxin
  * @className : UserServiceImpl
@@ -24,22 +29,24 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService, UserDetailsService {
 
+    private Logger log = (Logger) LoggerFactory.getLogger(UserServiceImpl.class);
     @Autowired
     private UserMapper userMapper;
+    @Autowired
     private UserAuthorityMapper userAuthorityMapper ;
 
-    @Transactional
     @Override
+    @Transactional
     public int saveUser(User user) {
-        String password = user.getPassword();
-        PasswordEncoder encoder = new BCryptPasswordEncoder();
-        password = encoder.encode(password);
-        user.setPassword(password);
-        userMapper.insert(user);
-        for (Authority a: user.getAuthoritiesList()){
-            userAuthorityMapper.insert(user.getId() , a.getId());
-        }
-        return 1 ;
+            String password = user.getPassword();
+            PasswordEncoder encoder = new BCryptPasswordEncoder();
+            password = encoder.encode(password);
+            user.setPassword(password);
+            userMapper.insert(user);
+            for (Authority a: user.getAuthoritiesList()){
+                userAuthorityMapper.insert(user.getId() , a.getId());
+            }
+            return 1;
     }
 
     @Transactional

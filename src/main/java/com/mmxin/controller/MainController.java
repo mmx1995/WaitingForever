@@ -7,6 +7,7 @@ import com.mmxin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -29,16 +30,25 @@ public class MainController {
     @Autowired
     private AuthorityService authorityService;
 
+    /**
+     * 主页
+     * */
     @GetMapping("/")
     public String index(){
         return "index";
     }
 
+    /**
+     * 注册
+     * */
     @GetMapping("register")
     public String register(){
         return "register";
     }
 
+    /**
+     * 注册
+     * */
     @PostMapping("register")
     public String addUser(User user){
         List<Authority> authorities = new ArrayList<>();
