@@ -17,6 +17,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -26,6 +27,7 @@ import java.util.Map;
 
 @SpringBootApplication
 @EnableWebSecurity
+@EnableRedisHttpSession
 @MapperScan("com.mmxin.mapper")
 public class MmxinApplication {
 

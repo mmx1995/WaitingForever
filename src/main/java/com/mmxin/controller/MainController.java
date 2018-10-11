@@ -5,12 +5,14 @@ import com.mmxin.pojo.User;
 import com.mmxin.service.AuthorityService;
 import com.mmxin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpRequest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,4 +66,10 @@ public class MainController {
         return "login";
     }
 
+    @GetMapping("test")
+    public String test(HttpServletRequest httpRequest){
+        System.out.println("hehehehhe");
+        System.out.println(httpRequest.getSession());
+        return "test" ;
+    }
 }
