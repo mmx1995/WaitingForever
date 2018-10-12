@@ -11,7 +11,7 @@ spring:
           filters: stat
           driver-class-name: com.mysql.jdbc.Driver
           #基本属性
-          url: jdbc:mysql://18.218.214.85:3306/WaitingForever?useSSL=true&serverTimezone=UTC&characterEncoding=UTF-8
+          url: jdbc:mysql://18.218.214.85:3306/WaitingForever?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
           username: root
           password: root
           #配置初始化大小/最小/最大
