@@ -32,6 +32,7 @@ if (curAdd.indexOf('www.dnforever.com') == -1) {
     }
   })
 }
-$('body').click(function(){
-  console.log(virtualData);
+$('.home-nav-menu').click(function(){
+  $('.home-nav-menu').removeClass('home-nav-active');
+  $(this).addClass('home-nav-active');
 })
