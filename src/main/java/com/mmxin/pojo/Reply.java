@@ -12,6 +12,8 @@ public class Reply implements Serializable {
 
     private Integer storyid;
 
+    private Integer userid;
+
     private String status;
 
     private Date createtime;
@@ -50,6 +52,14 @@ public class Reply implements Serializable {
         this.storyid = storyid;
     }
 
+    public Integer getUserid() {
+        return userid;
+    }
+
+    public void setUserid(Integer userid) {
+        this.userid = userid;
+    }
+
     public String getStatus() {
         return status;
     }
@@ -82,6 +92,7 @@ public class Reply implements Serializable {
             && (this.getReplycontent() == null ? other.getReplycontent() == null : this.getReplycontent().equals(other.getReplycontent()))
             && (this.getParentreply() == null ? other.getParentreply() == null : this.getParentreply().equals(other.getParentreply()))
             && (this.getStoryid() == null ? other.getStoryid() == null : this.getStoryid().equals(other.getStoryid()))
+            && (this.getUserid() == null ? other.getUserid() == null : this.getUserid().equals(other.getUserid()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getCreatetime() == null ? other.getCreatetime() == null : this.getCreatetime().equals(other.getCreatetime()));
     }
@@ -94,6 +105,7 @@ public class Reply implements Serializable {
         result = prime * result + ((getReplycontent() == null) ? 0 : getReplycontent().hashCode());
         result = prime * result + ((getParentreply() == null) ? 0 : getParentreply().hashCode());
         result = prime * result + ((getStoryid() == null) ? 0 : getStoryid().hashCode());
+        result = prime * result + ((getUserid() == null) ? 0 : getUserid().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getCreatetime() == null) ? 0 : getCreatetime().hashCode());
         return result;

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.mmxin.mapper.StoryMapper" >
-  <resultMap id="BaseResultMap" type="com.mmxin.pojo.Story" >
+<mapper namespace="com.mmxin.mapper.StoryHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.mmxin.pojo.StoryHistory" >
     <id column="storyId" property="storyid" jdbcType="INTEGER" />
+    <id column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
     <result column="storyTitle" property="storytitle" jdbcType="VARCHAR" />
     <result column="storySummary" property="storysummary" jdbcType="VARCHAR" />
     <result column="topic" property="topic" jdbcType="VARCHAR" />
@@ -11,48 +12,52 @@
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="replyNumber" property="replynumber" jdbcType="INTEGER" />
     <result column="commentNumber" property="commentnumber" jdbcType="INTEGER" />
-    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="com.mmxin.pojo.Story" extends="BaseResultMap" >
+  <resultMap id="ResultMapWithBLOBs" type="com.mmxin.pojo.StoryHistory" extends="BaseResultMap" >
     <result column="storyContent" property="storycontent" jdbcType="LONGVARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    storyId, storyTitle, storySummary, topic, label, authorId, status, replyNumber, commentNumber, 
-    updateTime, createTime
+    storyId, updateTime, storyTitle, storySummary, topic, label, authorId, status, replyNumber, 
+    commentNumber, createTime
   </sql>
   <sql id="Blob_Column_List" >
     storyContent
   </sql>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="com.mmxin.pojo.StoryHistoryKey" >
     select 
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
-    from story
+    from story_history
     where storyId = #{storyid,jdbcType=INTEGER}
+      and updateTime = #{updatetime,jdbcType=TIMESTAMP}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from story
+  <delete id="deleteByPrimaryKey" parameterType="com.mmxin.pojo.StoryHistoryKey" >
+    delete from story_history
     where storyId = #{storyid,jdbcType=INTEGER}
+      and updateTime = #{updatetime,jdbcType=TIMESTAMP}
   </delete>
-  <insert id="insert" parameterType="com.mmxin.pojo.Story" >
-    insert into story (storyId, storyTitle, storySummary, 
-      topic, label, authorId, 
-      status, replyNumber, commentNumber, 
-      updateTime, createTime, storyContent
+  <insert id="insert" parameterType="com.mmxin.pojo.StoryHistory" >
+    insert into story_history (storyId, updateTime, storyTitle, 
+      storySummary, topic, label, 
+      authorId, status, replyNumber, 
+      commentNumber, createTime, storyContent
       )
-    values (#{storyid,jdbcType=INTEGER}, #{storytitle,jdbcType=VARCHAR}, #{storysummary,jdbcType=VARCHAR}, 
-      #{topic,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, #{authorid,jdbcType=INTEGER}, 
-      #{status,jdbcType=VARCHAR}, #{replynumber,jdbcType=INTEGER}, #{commentnumber,jdbcType=INTEGER}, 
-      #{updatetime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{storycontent,jdbcType=LONGVARCHAR}
+    values (#{storyid,jdbcType=INTEGER}, #{updatetime,jdbcType=TIMESTAMP}, #{storytitle,jdbcType=VARCHAR}, 
+      #{storysummary,jdbcType=VARCHAR}, #{topic,jdbcType=VARCHAR}, #{label,jdbcType=VARCHAR}, 
+      #{authorid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{replynumber,jdbcType=INTEGER}, 
+      #{commentnumber,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{storycontent,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.mmxin.pojo.Story" >
-    insert into story
+  <insert id="insertSelective" parameterType="com.mmxin.pojo.StoryHistory" >
+    insert into story_history
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="storyid != null" >
         storyId,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
       </if>
       <if test="storytitle != null" >
         storyTitle,
@@ -78,9 +83,6 @@
       <if test="commentnumber != null" >
         commentNumber,
       </if>
-      <if test="updatetime != null" >
-        updateTime,
-      </if>
       <if test="createtime != null" >
         createTime,
       </if>
@@ -91,6 +93,9 @@
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="storyid != null" >
         #{storyid,jdbcType=INTEGER},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
       </if>
       <if test="storytitle != null" >
         #{storytitle,jdbcType=VARCHAR},
@@ -116,9 +121,6 @@
       <if test="commentnumber != null" >
         #{commentnumber,jdbcType=INTEGER},
       </if>
-      <if test="updatetime != null" >
-        #{updatetime,jdbcType=TIMESTAMP},
-      </if>
       <if test="createtime != null" >
         #{createtime,jdbcType=TIMESTAMP},
       </if>
@@ -127,8 +129,8 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.mmxin.pojo.Story" >
-    update story
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmxin.pojo.StoryHistory" >
+    update story_history
     <set >
       <if test="storytitle != null" >
         storyTitle = #{storytitle,jdbcType=VARCHAR},
@@ -154,9 +156,6 @@
       <if test="commentnumber != null" >
         commentNumber = #{commentnumber,jdbcType=INTEGER},
       </if>
-      <if test="updatetime != null" >
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      </if>
       <if test="createtime != null" >
         createTime = #{createtime,jdbcType=TIMESTAMP},
       </if>
@@ -165,9 +164,10 @@
       </if>
     </set>
     where storyId = #{storyid,jdbcType=INTEGER}
+      and updateTime = #{updatetime,jdbcType=TIMESTAMP}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmxin.pojo.Story" >
-    update story
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.mmxin.pojo.StoryHistory" >
+    update story_history
     set storyTitle = #{storytitle,jdbcType=VARCHAR},
       storySummary = #{storysummary,jdbcType=VARCHAR},
       topic = #{topic,jdbcType=VARCHAR},
@@ -176,13 +176,13 @@
       status = #{status,jdbcType=VARCHAR},
       replyNumber = #{replynumber,jdbcType=INTEGER},
       commentNumber = #{commentnumber,jdbcType=INTEGER},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       storyContent = #{storycontent,jdbcType=LONGVARCHAR}
     where storyId = #{storyid,jdbcType=INTEGER}
+      and updateTime = #{updatetime,jdbcType=TIMESTAMP}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.mmxin.pojo.Story" >
-    update story
+  <update id="updateByPrimaryKey" parameterType="com.mmxin.pojo.StoryHistory" >
+    update story_history
     set storyTitle = #{storytitle,jdbcType=VARCHAR},
       storySummary = #{storysummary,jdbcType=VARCHAR},
       topic = #{topic,jdbcType=VARCHAR},
@@ -191,8 +191,8 @@
       status = #{status,jdbcType=VARCHAR},
       replyNumber = #{replynumber,jdbcType=INTEGER},
       commentNumber = #{commentnumber,jdbcType=INTEGER},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
       createTime = #{createtime,jdbcType=TIMESTAMP}
     where storyId = #{storyid,jdbcType=INTEGER}
+      and updateTime = #{updatetime,jdbcType=TIMESTAMP}
   </update>
 </mapper>

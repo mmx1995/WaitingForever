@@ -3,9 +3,7 @@ package com.mmxin.pojo;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Story implements Serializable {
-    private Integer storyid;
-
+public class StoryHistory extends StoryHistoryKey implements Serializable {
     private String storytitle;
 
     private String storysummary;
@@ -22,21 +20,11 @@ public class Story implements Serializable {
 
     private Integer commentnumber;
 
-    private Date updatetime;
-
     private Date createtime;
 
     private String storycontent;
 
     private static final long serialVersionUID = 1L;
-
-    public Integer getStoryid() {
-        return storyid;
-    }
-
-    public void setStoryid(Integer storyid) {
-        this.storyid = storyid;
-    }
 
     public String getStorytitle() {
         return storytitle;
@@ -102,14 +90,6 @@ public class Story implements Serializable {
         this.commentnumber = commentnumber;
     }
 
-    public Date getUpdatetime() {
-        return updatetime;
-    }
-
-    public void setUpdatetime(Date updatetime) {
-        this.updatetime = updatetime;
-    }
-
     public Date getCreatetime() {
         return createtime;
     }
@@ -137,8 +117,9 @@ public class Story implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        Story other = (Story) that;
+        StoryHistory other = (StoryHistory) that;
         return (this.getStoryid() == null ? other.getStoryid() == null : this.getStoryid().equals(other.getStoryid()))
+            && (this.getUpdatetime() == null ? other.getUpdatetime() == null : this.getUpdatetime().equals(other.getUpdatetime()))
             && (this.getStorytitle() == null ? other.getStorytitle() == null : this.getStorytitle().equals(other.getStorytitle()))
             && (this.getStorysummary() == null ? other.getStorysummary() == null : this.getStorysummary().equals(other.getStorysummary()))
             && (this.getTopic() == null ? other.getTopic() == null : this.getTopic().equals(other.getTopic()))
@@ -147,7 +128,6 @@ public class Story implements Serializable {
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getReplynumber() == null ? other.getReplynumber() == null : this.getReplynumber().equals(other.getReplynumber()))
             && (this.getCommentnumber() == null ? other.getCommentnumber() == null : this.getCommentnumber().equals(other.getCommentnumber()))
-            && (this.getUpdatetime() == null ? other.getUpdatetime() == null : this.getUpdatetime().equals(other.getUpdatetime()))
             && (this.getCreatetime() == null ? other.getCreatetime() == null : this.getCreatetime().equals(other.getCreatetime()))
             && (this.getStorycontent() == null ? other.getStorycontent() == null : this.getStorycontent().equals(other.getStorycontent()));
     }
@@ -157,6 +137,7 @@ public class Story implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getStoryid() == null) ? 0 : getStoryid().hashCode());
+        result = prime * result + ((getUpdatetime() == null) ? 0 : getUpdatetime().hashCode());
         result = prime * result + ((getStorytitle() == null) ? 0 : getStorytitle().hashCode());
         result = prime * result + ((getStorysummary() == null) ? 0 : getStorysummary().hashCode());
         result = prime * result + ((getTopic() == null) ? 0 : getTopic().hashCode());
@@ -165,7 +146,6 @@ public class Story implements Serializable {
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getReplynumber() == null) ? 0 : getReplynumber().hashCode());
         result = prime * result + ((getCommentnumber() == null) ? 0 : getCommentnumber().hashCode());
-        result = prime * result + ((getUpdatetime() == null) ? 0 : getUpdatetime().hashCode());
         result = prime * result + ((getCreatetime() == null) ? 0 : getCreatetime().hashCode());
         result = prime * result + ((getStorycontent() == null) ? 0 : getStorycontent().hashCode());
         return result;

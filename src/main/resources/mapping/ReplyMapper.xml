@@ -6,11 +6,12 @@
     <result column="replyContent" property="replycontent" jdbcType="VARCHAR" />
     <result column="parentReply" property="parentreply" jdbcType="INTEGER" />
     <result column="storyId" property="storyid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
     <result column="status" property="status" jdbcType="VARCHAR" />
     <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    replyId, replyContent, parentReply, storyId, status, createTime
+    replyId, replyContent, parentReply, storyId, userId, status, createTime
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -24,11 +25,11 @@
   </delete>
   <insert id="insert" parameterType="com.mmxin.pojo.Reply" >
     insert into reply (replyId, replyContent, parentReply, 
-      storyId, status, createTime
-      )
+      storyId, userId, status, 
+      createTime)
     values (#{replyid,jdbcType=INTEGER}, #{replycontent,jdbcType=VARCHAR}, #{parentreply,jdbcType=INTEGER}, 
-      #{storyid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}
-      )
+      #{storyid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{createtime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="com.mmxin.pojo.Reply" >
     insert into reply
@@ -44,6 +45,9 @@
       </if>
       <if test="storyid != null" >
         storyId,
+      </if>
+      <if test="userid != null" >
+        userId,
       </if>
       <if test="status != null" >
         status,
@@ -65,6 +69,9 @@
       <if test="storyid != null" >
         #{storyid,jdbcType=INTEGER},
       </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
       <if test="status != null" >
         #{status,jdbcType=VARCHAR},
       </if>
@@ -85,6 +92,9 @@
       <if test="storyid != null" >
         storyId = #{storyid,jdbcType=INTEGER},
       </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
       <if test="status != null" >
         status = #{status,jdbcType=VARCHAR},
       </if>
@@ -99,6 +109,7 @@
     set replyContent = #{replycontent,jdbcType=VARCHAR},
       parentReply = #{parentreply,jdbcType=INTEGER},
       storyId = #{storyid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
       status = #{status,jdbcType=VARCHAR},
       createTime = #{createtime,jdbcType=TIMESTAMP}
     where replyId = #{replyid,jdbcType=INTEGER}
