@@ -10,6 +10,12 @@
   <!-- default header name is X-CSRF-TOKEN -->
   <meta name="_csrf_header" th:content="${_csrf.headerName}" />
   <!--在下面的部分引入css,js-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css/common.css">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link rel="stylesheet" type="text/css" href="http://at.alicdn.com/t/font_870730_frmigfkn1m6.css">
 </head>
 
 <body>
@@ -27,7 +33,7 @@
     </form>
   </div>
   <!--如果没有登陆，则显示登陆按钮-->
-  <div sec:authorize="isAnonymous()">
+  <div sec:authorize="isAnonymous()" class="login-register pull-right">
     <a href="/login">登录</a>
     <a href="/register">注册</a>
   </div>

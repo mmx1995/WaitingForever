@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mmxin.mapper.CommendMapper" >
+  <resultMap id="BaseResultMap" type="com.mmxin.pojo.Commend" >
+    <id column="storyId" property="storyid" jdbcType="INTEGER" />
+    <id column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    storyId, userId, type, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.mmxin.pojo.CommendKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from commend
+    where storyId = #{storyid,jdbcType=INTEGER}
+      and userId = #{userid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.mmxin.pojo.CommendKey" >
+    delete from commend
+    where storyId = #{storyid,jdbcType=INTEGER}
+      and userId = #{userid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mmxin.pojo.Commend" >
+    insert into commend (storyId, userId, type, 
+      status)
+    values (#{storyid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.mmxin.pojo.Commend" >
+    insert into commend
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="storyid != null" >
+        storyId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="storyid != null" >
+        #{storyid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmxin.pojo.Commend" >
+    update commend
+    <set >
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+    </set>
+    where storyId = #{storyid,jdbcType=INTEGER}
+      and userId = #{userid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mmxin.pojo.Commend" >
+    update commend
+    set type = #{type,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where storyId = #{storyid,jdbcType=INTEGER}
+      and userId = #{userid,jdbcType=INTEGER}
+  </update>
+</mapper>
