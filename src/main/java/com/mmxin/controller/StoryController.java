@@ -1,6 +1,7 @@
 package com.mmxin.controller;
 
 import com.mmxin.pojo.Story;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -23,17 +24,36 @@ import org.springframework.ui.Model;
 public class StoryController {
 
     /**
-     *
+     *新建故事
+     * */
+    @GetMapping()
+    public ModelAndView addStory(Model model){
+        Story story = new Story() ;
+        model.addAttribute("story",story);
+        return new ModelAndView("story/story", "userModel", model);
+    }
+    /**
+     * 根据用户号获取故事列表
+     * @param userId 用户号
+     * @param pageNum 当前分页页数
+     * @param pageSize 分页的大小
+     * @param model mvc
+     * */
+    @GetMapping()
+    public ModelAndView getStoryByUserId(@RequestParam("userId")int userId,
+                                         @RequestParam(value = "pageSize",required = false,defaultValue = "5")int pageSize,
+                                         @RequestParam(value = "pageNum",required = false,defaultValue = "0")int pageNum,
+                                         Model model){
+
+        return null ;
+    }
+
+    /**
+     * 根据故事id获取故事
      * */
     @GetMapping("/{id}")
-    public ModelAndView addStory(@PathVariable("id")int id,Model model){
-        //如果是0 ，则返回新建故事页面
-        if (id == 0){
-            Story story = new Story() ;
-            model.addAttribute("story",story);
-            return new ModelAndView("story/story", "userModel", model);
-        }
-        return null ;
+    public ModelAndView getStoryById(@PathVariable("id")int id){
+        return null;
     }
 
     /**
