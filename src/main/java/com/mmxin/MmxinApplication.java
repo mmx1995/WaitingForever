@@ -3,8 +3,6 @@ package com.mmxin;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
-import com.github.pagehelper.PageHelper;
-import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -19,7 +17,6 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.session.data.redis.config.annotation.web.http.EnableRedisHttpSession;
 import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -102,17 +99,12 @@ public class MmxinApplication {
 
     //提供sqlSession
     @Bean
-    public SqlSessionFactory sqlSessionFactory(PageHelper pageHelper)throws Exception{
+    public SqlSessionFactory sqlSessionFactory()throws Exception{
         SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
         sqlSessionFactoryBean.setDataSource(druidDataSource());
-        sqlSessionFactoryBean.setPlugins(new Interceptor[] {pageHelper});
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
         sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath:/mapping/*.xml"));
         return sqlSessionFactoryBean.getObject();
     }
 
-    @Bean
-    public PageHelper getPageHelper(){
-        return new PageHelper();
-    }
 }

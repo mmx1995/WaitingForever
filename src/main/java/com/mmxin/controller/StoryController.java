@@ -4,6 +4,8 @@ import com.mmxin.pojo.Story;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
+
 
 /**
  * @author : mmxin
@@ -13,14 +15,25 @@ import org.springframework.web.servlet.ModelAndView;
  * 增和改使用相同的前端页面
  * 增加的时候返回空的Story对象，即new 一个新的对象
  * 改的时候返回
+ *
+ * 分页需要自己实现
  */
 @Controller
-@RequestMapping("story")
+@RequestMapping("stories")
 public class StoryController {
 
-    @GetMapping()
-    public ModelAndView addStory(){
-        return null;
+    /**
+     *
+     * */
+    @GetMapping("/{id}")
+    public ModelAndView addStory(@PathVariable("id")int id,Model model){
+        //如果是0 ，则返回新建故事页面
+        if (id == 0){
+            Story story = new Story() ;
+            model.addAttribute("story",story);
+            return new ModelAndView("story/story", "userModel", model);
+        }
+        return null ;
     }
 
     /**
