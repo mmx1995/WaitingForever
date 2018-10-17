@@ -40,7 +40,7 @@ public class StoryController {
     }
 
     /**
-     * 删除故事，此处不做删除，只做状态更新，将状态更新为停用状态，此时故事对所有人不可见x
+     * 删除故事，此处不做删除，只做状态更新，将状态更新为停用状态，此时故事对所有人不可见
      * */
     @DeleteMapping
     public ModelAndView daleteStory(Story story){

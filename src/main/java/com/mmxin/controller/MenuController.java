@@ -27,9 +27,9 @@ public class MenuController {
     MenuService menuService;
 
     /**
-     * 获取所有可用的菜单
+     *
      * */
-    @GetMapping
+    @GetMapping(produces = "application/json,charset=utf-8")
     public @ResponseBody List<Menu> getMenu(@RequestParam(value = "position",required = false) String position){
         if(position == null || position.equals("")){
             return menuService.getInUseMenu() ;
