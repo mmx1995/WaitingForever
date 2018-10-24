@@ -20,18 +20,18 @@ import org.springframework.ui.Model;
  * 分页需要自己实现
  */
 @Controller
-@RequestMapping("stories")
+@RequestMapping("/stories")
 public class StoryController {
 
     /**
      *新建故事
      * */
-    @GetMapping()
+    /*@GetMapping()
     public ModelAndView addStory(Model model){
         Story story = new Story() ;
         model.addAttribute("story",story);
         return new ModelAndView("story/story", "userModel", model);
-    }
+    }*/
     /**
      * 根据用户号获取故事列表
      * @param userId 用户号
@@ -39,7 +39,7 @@ public class StoryController {
      * @param pageSize 分页的大小
      * @param model mvc
      * */
-    @GetMapping()
+    @GetMapping("/")
     public ModelAndView getStoryByUserId(@RequestParam("userId")int userId,
                                          @RequestParam(value = "pageSize",required = false,defaultValue = "5")int pageSize,
                                          @RequestParam(value = "pageNum",required = false,defaultValue = "0")int pageNum,

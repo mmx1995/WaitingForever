@@ -1,5 +1,7 @@
 package com.mmxin.controller;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.mmxin.pojo.Menu;
 import com.mmxin.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import java.util.List;
-
+import com.alibaba.fastjson.JSON;
 /**
  * @author : mmxin
  * @className : MenuController
@@ -29,12 +31,13 @@ public class MenuController {
     /**
      *
      * */
-    @GetMapping(produces = "application/json,charset=utf-8")
-    public @ResponseBody List<Menu> getMenu(@RequestParam(value = "position",required = false) String position){
+    @GetMapping(produces = "application/json")
+    public @ResponseBody String getMenu(@RequestParam(value = "position",required = false) String position){
         if(position == null || position.equals("")){
-            return menuService.getInUseMenu() ;
+
+            return JSON.toJSONString(menuService.getInUseMenu())  ;
         }else{
-            return menuService.getByPosition(position);
+            return JSON.toJSONString(menuService.getByPosition(position));
         }
 
     }
