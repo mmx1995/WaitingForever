@@ -2,34 +2,25 @@ package com.mmxin.aspect;
 
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
-import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import javax.servlet.http.HttpServletRequest;
 /**
  * 切面
  * */
-@Aspect
+@org.aspectj.lang.annotation.Aspect
 @Component
-public class LogAspect {
+public class Aspect {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    public final String controllerSpace = "execution(* com.mmxin.controller.MainController.*(..))";   //切入的路径
-
-    static{
-        System.out.println("进来了");
-    }
-
-    @Pointcut(controllerSpace)
+    @Pointcut("execution(* com.mmxin.controller.MainController.register(..))")
     public void log(){
+        System.out.println("log()");
     }
 
     @Before("log()")
@@ -51,14 +42,15 @@ public class LogAspect {
 
         //param
         logger.info("args={}", joinPoint.getArgs());
+        System.out.println("before");
     }
 
     @After("log()")
     public void doAfter(){
     }
 
-    @AfterReturning(returning="obj", pointcut = "log()")
+    /*@AfterReturning(returning="obj",pointcut="log()")
     public void doAfterReturnig(Object obj){
         logger.info("reponse={}", obj);
-    }
+    }*/
 }
