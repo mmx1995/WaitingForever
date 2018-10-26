@@ -1,7 +1,9 @@
 package com.mmxin.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 public interface UserAuthorityMapper {
 
-    int insert(Long userId,Long authorityId);
+    int insert(@Param("userId") Long userId, @Param("authorityId") Long authorityId);
 
 }
