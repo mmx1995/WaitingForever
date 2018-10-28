@@ -1,6 +1,7 @@
 package com.mmxin.mapper;
 
 import com.mmxin.pojo.User;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -50,4 +51,9 @@ public interface UserMapper {
      * 根据用户名查询用户
      * */
     User getUserByUserName(String userName);
+
+    /**
+     * 根据用户Id 更新密码
+     * */
+    int updatePassword(@Param("userId") Long userId, @Param("password") String password);
 }

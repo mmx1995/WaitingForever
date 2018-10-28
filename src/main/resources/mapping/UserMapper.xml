@@ -150,12 +150,17 @@
     update user
     set avatar = #{avatar,jdbcType=VARCHAR},
       email = #{email,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
       phone_num = #{phoneNum,jdbcType=VARCHAR},
       sex = #{sex,jdbcType=VARCHAR},
       user_name = #{userName,jdbcType=VARCHAR},
       updateTime = #{updatetime,jdbcType=TIMESTAMP},
       createTime = #{createtime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="updatePassword">
+    update user
+    set password = #{password}
+    where id = #{userId}
   </update>
 </mapper>

@@ -66,10 +66,4 @@ public class MainController {
         return "login";
     }
 
-    @GetMapping("test")
-    public String test(HttpServletRequest httpRequest){
-        System.out.println("hehehehhe");
-        System.out.println(httpRequest.getSession());
-        return "test" ;
-    }
 }

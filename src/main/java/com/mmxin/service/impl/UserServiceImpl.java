@@ -79,6 +79,12 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return userMapper.getAll();
     }
 
+    @Override
+    public int updatePassword(Long userId, String password) {
+        int i = userMapper.updatePassword(userId,password);
+        return 0;
+    }
+
     /**
      * 实现UserDetailsService 接口的方法
      * */

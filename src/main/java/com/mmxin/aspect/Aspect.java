@@ -78,6 +78,10 @@ public class Aspect {
         log.setUsetime(end.getTime() - begin.getTime());
         this.service.save(log);
     }
+
+    /**
+     * 获取真实IP
+     * */
     public String getRealIp(HttpServletRequest request){
         String Xip = request.getHeader("X-Real-IP");
         String XFor = request.getHeader("X-Forwarded-For");

@@ -3,11 +3,11 @@ package com.mmxin.controller;
 import com.mmxin.pojo.User;
 import com.mmxin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
@@ -26,20 +26,32 @@ public class UserController {
     /**
      * 根据userId获取用户信息
      * */
-    @GetMapping("/{userid}")
-    public ModelAndView getUserById(@PathVariable("id")int userId){
-        return null ;
+    @GetMapping("/{userId}")
+    public ModelAndView getUserById(@PathVariable("userId")Long userId, Model model){
+        User user = this.userService.getUserById(userId);
+        model.addAttribute("user",user);
+        return new ModelAndView("users/userInfo","userModel",model);
     }
 
     /**
      * 更新用户信息,除密码之外
      * */
+    @PostMapping("/userId")
     public ModelAndView updateUser(User user){
-
         int i  = userService.updateUser(user);
         return null;
     }
 
+    @PostMapping("/updatePassword")
+    public ModelAndView updatePassword(Long userId,String oldPasswrod, String newPassword){
+        User user = userService.getUserById(userId);
+        String nowPassword = user.getPassword();
+        PasswordEncoder encoder = new BCryptPasswordEncoder();
+        if (nowPassword.equals(encoder.encode(oldPasswrod))){
+
+        }
+        return null ;
+    }
 
 
 }

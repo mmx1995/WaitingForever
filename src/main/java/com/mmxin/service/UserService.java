@@ -59,4 +59,9 @@ public interface UserService {
      * @return
      */
     /*Page<User> listUsersByUserNameLike(String userName, Pageable pageable);*/
+
+    /**
+     * 更新用户密码
+     * */
+    int updatePassword(Long userId, String password);
 }
