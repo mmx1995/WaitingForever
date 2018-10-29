@@ -4,25 +4,33 @@ package com.mmxin.tools;
 *https://blog.csdn.net/xubin1623875795/article/details/78967141
 * */
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
+
 public class MailSender {
 
-    /*public int send(){
+    private JavaMailSender jms = new JavaMailSenderImpl();
 
-        Properties properties = new Properties();
-        properties.setProperty("mail.host","smtp.sina.com");
-        properties.setProperty("mail.transport.protocol","smtp");
-        properties.setProperty("mail.smtp.auth","true");
+    public String send(String toMail){
+        //建立邮件
+        SimpleMailMessage message = new SimpleMailMessage();
+        //发送者
+        message.setFrom("mmxin1234@sina.com");
+        //接收者
+        message.setTo(toMail);
+        //发送的标题
+        message.setSubject("欢迎注册异地恋主题论坛");
+        //发送的内容
+        message.setText("Hello World");
+        //发送邮件
+        jms.send(message);
+        return "ok";
+    }
 
-        // 1、创建session
-        Session session = Session
-        // 2、开启session 的 debug 模式
-
-        // 3、连上邮件服务器，需要发件人提供邮箱的用户名和密码进行验证
-
-        // 4、创建邮件
-
-        // 5、发送邮件
-        return 0;
-    }*/
-
+    public static MailSender getInstance(){
+        return new MailSender();
+    }
 }
