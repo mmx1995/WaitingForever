@@ -1,3 +1,4 @@
+//测试数据
 var curAdd = window.location.href;
 var virtualData;
 if (curAdd.indexOf('www.dnforever.com') == -1) {
@@ -32,7 +33,23 @@ if (curAdd.indexOf('www.dnforever.com') == -1) {
     }
   })
 }
-$('.home-nav-menu').click(function(){
+//导航栏高亮
+$('.home-nav-menu').click(function() {
   $('.home-nav-menu').removeClass('home-nav-active');
   $(this).addClass('home-nav-active');
-})
+});
+//swiper轮播图
+var swiper = new Swiper('.swiper-container', {
+  slidesPerView: 1,
+  spaceBetween: 30,
+  loop: true,
+  autoplay: true,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev',
+  },
+});
