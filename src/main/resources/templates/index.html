@@ -2,54 +2,63 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="~{fragments/header :: header}">
-  <meta charset="utf-8">
-  <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../static/css/common.css" rel="stylesheet" />
-  <link href="../static/css/index.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../static/css/common.css" rel="stylesheet"/>
+    <link href="../static/css/index.css" rel="stylesheet"/>
 </head>
 
 <body>
-  <div class="home-header clearfix">
+<div class="home-header clearfix">
     <a href="" class="home-logo pull-left">
-      <img src="../static/img/favicon.ico" alt="WaitingForever首页" title="WaitingForever首页">
+        <img src="../static/img/favicon.ico" alt="WaitingForever首页" title="WaitingForever首页">
     </a>
     <div class="first-level-menu pull-left">
-      <a href="">菜单链接一</a>
-      <a href="">菜单链接二</a>
-      <a href="">菜单链接三</a>
-      <a href="">菜单链接四</a>
+        <a href="">菜单链接一</a>
+        <a href="">菜单链接二</a>
+        <a href="">菜单链接三</a>
+        <a href="">菜单链接四</a>
     </div>
     <div class="home-search pull-left clearfix">
-      <input type="" name="" class="input-search pull-left" placeholder="文章、资源">
-      <a href="" target="_blank" class="a-search pull-right">
-        <svg id="sousuo" viewBox="0 0 1024 1024" width="100%" height="100%" fill="#ccc">
-          <path d="M719.6779726 653.55865555l0.71080936 0.70145709 191.77828505 191.77828506c18.25658185 18.25658185 18.25658185 47.86273439 0 66.12399318-18.26593493 18.26125798-47.87208744 18.26125798-66.13334544 0l-191.77828505-191.77828506c-0.2338193-0.2338193-0.4676378-0.4676378-0.69678097-0.71081014-58.13206223 44.25257003-130.69075187 70.51978897-209.38952657 70.51978894C253.06424184 790.19776156 98.14049639 635.27869225 98.14049639 444.17380511S253.06424184 98.14049639 444.16912898 98.14049639c191.10488633 0 346.02863258 154.92374545 346.02863259 346.02863259 0 78.6987747-26.27189505 151.25746514-70.51978897 209.38952657z m-275.50884362 43.11621045c139.45428506 0 252.50573702-113.05145197 252.50573702-252.50573702s-113.05145197-252.50573702-252.50573702-252.50573783-252.50573702 113.05145197-252.50573783 252.50573783 113.05145197 252.50573702 252.50573783 252.50573702z"></path>
-        </svg>
-      </a>
+        <input type="" name="" class="input-search pull-left" placeholder="文章、资源">
+        <a href="" target="_blank" class="a-search pull-right">
+            <svg id="sousuo" viewBox="0 0 1024 1024" width="100%" height="100%" fill="#ccc">
+                <path d="M719.6779726 653.55865555l0.71080936 0.70145709 191.77828505 191.77828506c18.25658185 18.25658185 18.25658185 47.86273439 0 66.12399318-18.26593493 18.26125798-47.87208744 18.26125798-66.13334544 0l-191.77828505-191.77828506c-0.2338193-0.2338193-0.4676378-0.4676378-0.69678097-0.71081014-58.13206223 44.25257003-130.69075187 70.51978897-209.38952657 70.51978894C253.06424184 790.19776156 98.14049639 635.27869225 98.14049639 444.17380511S253.06424184 98.14049639 444.16912898 98.14049639c191.10488633 0 346.02863258 154.92374545 346.02863259 346.02863259 0 78.6987747-26.27189505 151.25746514-70.51978897 209.38952657z m-275.50884362 43.11621045c139.45428506 0 252.50573702-113.05145197 252.50573702-252.50573702s-113.05145197-252.50573702-252.50573702-252.50573783-252.50573702 113.05145197-252.50573783 252.50573783 113.05145197 252.50573702 252.50573783 252.50573702z"></path>
+            </svg>
+        </a>
     </div>
     <div class="release-news pull-left">
-      <a href=""><i class="icon iconfont icon-Pencil-"></i>发布链接一</a>
-      <a href=""><i class="icon iconfont icon-Book-Open-Page"></i>发布链接二</a>
+        <a href=""><i class="icon iconfont icon-Pencil-"></i>发布链接一</a>
+        <a href=""><i class="icon iconfont icon-Book-Open-Page"></i>发布链接二</a>
     </div>
     <div class="login-register pull-right">
-      <a href="">登录</a>
-      <a href="">注册</a>
+        <a href="">登录</a>
+        <a href="">注册</a>
     </div>
-  </div>
-  <div class="home-container">
-    <div class="home-nav">
-      <p class="home-nav-menu">推荐</p>
-      <p class="home-nav-menu">关注</p>
-      <p class="home-nav-menu">最新</p>
-      <p class="home-nav-menu">最热</p>
-      <p class="home-nav-menu">最持久</p>
-      <p class="home-nav-menu">受益匪多</p>
+</div>
+<div class="home-container clearfix">
+    <div class="home-nav pull-left">
+        <p class="home-nav-menu home-nav-active">推荐</p>
+        <p class="home-nav-menu">关注</p>
+        <p class="home-nav-menu">最新</p>
+        <p class="home-nav-menu">最热</p>
+        <p class="home-nav-menu">最持久</p>
+        <p class="home-nav-menu">受益匪多</p>
     </div>
-  </div>
-  <div th:replhome-nav-menuace="~{fragments/footer :: footer}">...</div>
-  <script src="../static/js/jquery-3.3.1.min.js"></script>
-  <script src="../static/js/bootstrap.min.js"></script>
-  <script src="../static/js/index.js"></script>
+    <div class="sub-content pull-left">
+        <div class="adv-position">
+            <a href="">
+                <img src="../static/img/adv-img.jpg" alt="" class="adv-img">
+            </a>
+            <p class="adv-hint">广告</p>
+        </div>
+        <div></div>
+    </div>
+</div>
+<div th:replhome-nav-menuace="~{fragments/footer :: footer}">...</div>
+<script src="../static/js/jquery-3.3.1.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/index.js"></script>
 </body>
 
 </html>
