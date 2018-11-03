@@ -45,11 +45,11 @@ spring:
       auto: true
     mail:
       default-encoding: utf-8
-      host: smtp.sina.com
+      host: smtp.163.com
       #账号
-      username: mmxin1234@sina.com
+      username: dengyouforever@163.com
       #发送者的邮箱密码
-      password: woshimiaogege
+      password: aini7758521
       #端口
       port: 25
       #协议
@@ -57,9 +57,15 @@ spring:
       properties:
         mail:
           debug: true
+          smtp:
+            ssl.enable: true
         smtp:
           socketFactory:
             class: javax.net.ssl.SSLSocketFactory
+          auth: true
+          starttls:
+            enable: true
+            required: true
 
 
 ## 该配置节点为独立的节点，有很多同学容易将这个配置放在spring的节点下，导致配置无法被识别

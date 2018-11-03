@@ -36,6 +36,11 @@ public class MainController {
      * 主页
      * */
     @GetMapping("/")
+    public String getNull(){
+        return "index";
+    }
+
+    @GetMapping("/index")
     public String index(){
         return "index";
     }
