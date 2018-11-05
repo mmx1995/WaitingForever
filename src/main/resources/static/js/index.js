@@ -44,6 +44,7 @@ var swiper = new Swiper('.swiper-container', {
   spaceBetween: 30,
   loop: true,
   autoplay: true,
+  autoplayDisableOnInteraction:true,
   pagination: {
     el: '.swiper-pagination',
     clickable: true,
