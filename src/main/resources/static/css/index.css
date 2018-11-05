@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 body {
   background-color: #f5f6f7;
 }
@@ -119,7 +121,7 @@ body {
 .swiper-container {
   width: 508px;
   height: 206px;
-  margin-left: 0 !important;
+  margin-left: 0;
 }
 
 .swiper-container:hover .swiper-button-next {
@@ -149,12 +151,12 @@ body {
 }
 
 .swiper-button-next {
-  background-image: none !important;
+  background-image: none;
   display: none;
 }
 
 .swiper-button-prev {
-  background-image: none !important;
+  background-image: none;
   display: none;
 }
 
@@ -163,10 +165,11 @@ body {
 }
 
 .swiper-pagination-bullet-active {
-  background: #007aff !important;
+  /*background: #007aff !important;
   border-radius: 35% !important;
   opacity: 1 !important;
-  width: 20px !important;
+  width: 20px !important;*/
+  animation:bullet-active 3.2s linear infinite;
 }
 
 svg {

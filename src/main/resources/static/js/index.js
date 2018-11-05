@@ -43,7 +43,9 @@ var swiper = new Swiper('.swiper-container', {
   slidesPerView: 1,
   spaceBetween: 30,
   loop: true,
-  autoplay: true,
+  autoplay: {
+    disableOnInteraction: false,
+  },
   autoplayDisableOnInteraction:true,
   pagination: {
     el: '.swiper-pagination',
