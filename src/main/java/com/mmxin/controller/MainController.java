@@ -34,13 +34,14 @@ public class MainController {
 
     /**
      * 主页
+     * todo: 之后有时间分析一下为啥不能拦截
      * */
-    @GetMapping("/")
+    @GetMapping(" ")
     public String getNull(){
         return "index";
     }
 
-    @GetMapping("/index")
+    @GetMapping("index")
     public String index(){
         return "index";
     }
