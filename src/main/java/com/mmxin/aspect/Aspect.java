@@ -58,12 +58,13 @@ public class Aspect {
         HttpServletRequest request = attributes.getRequest();
 
         requestLog = new RequestLog();
-        requestLog.setIp(request.getRequestURI());
+        requestLog.setIp(this.getRealIp(request));
         requestLog.setClassmethod(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
         requestLog.setIp(this.getRealIp(request));
         requestLog.setMethod(request.getMethod());
         requestLog.setRequest(JSON.toJSONString(joinPoint.getArgs()));
         requestLog.setRequesttime(start);
+        requestLog.setUrl(request.getRequestURI());
 
         //url
         logger.info("url={},method={},Ip={},class_method={},args={}", request.getRequestURI(),

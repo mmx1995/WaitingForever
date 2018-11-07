@@ -13,7 +13,7 @@ spring:
           #基本属性
           url: jdbc:mysql://18.218.214.85:3306/WaitingForever?useSSL=false&serverTimezone=UTC&characterEncoding=UTF-8
           username: root
-          password: root
+          password: CloseToYou12$$
           #配置初始化大小/最小/最大
           initial-size: 2
           min-idle: 2

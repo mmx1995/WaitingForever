@@ -1,6 +1,7 @@
 package com.mmxin.service.impl;
 
 import com.mmxin.service.MailSenderService;
+import com.mmxin.service.RandomNumberService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class MailSendServiceImpl implements MailSenderService {
     @Autowired
     TemplateEngine templateEngine;
 
+    @Autowired
+    RandomNumberService randomNumberService ;
+
     @Value("${spring.mail.username}")
     String fromMail;
 
@@ -43,9 +47,9 @@ public class MailSendServiceImpl implements MailSenderService {
             //抄送给谁
             message.setCc(copyTo);
             //主题
-            message.setSubject("欢迎注册异地恋主题网站");
+            message.setSubject("welcome to Always close to you");
             //内容
-            message.setText("Hello World");
+            message.setText("        您的验证码是： "+randomNumberService.redomNumber() +"  。 当前验证码5分钟内有效。 ");
             //发送邮件
             javaMailSender.send(message);
 
