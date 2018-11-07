@@ -46,6 +46,9 @@ public class Aspect {
 
     Date start ;
 
+    /**
+     * 定义切点
+     * */
     @Pointcut("execution(* com.mmxin.controller.*.*(..))")
     public void log(){
         System.out.println("log()");
@@ -65,8 +68,6 @@ public class Aspect {
         requestLog.setRequest(JSON.toJSONString(joinPoint.getArgs()));
         requestLog.setRequesttime(start);
         requestLog.setUrl(request.getRequestURI());
-
-        //url
         logger.info("url={},method={},Ip={},class_method={},args={}", request.getRequestURI(),
                 request.getMethod(),this.getRealIp(request),
                 joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName(),JSON.toJSONString(joinPoint.getArgs()));

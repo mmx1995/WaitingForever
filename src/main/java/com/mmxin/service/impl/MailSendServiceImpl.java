@@ -1,5 +1,7 @@
 package com.mmxin.service.impl;
 
+import com.mmxin.pojo.Identified;
+import com.mmxin.service.IdentifiedService;
 import com.mmxin.service.MailSenderService;
 import com.mmxin.service.RandomNumberService;
 import org.slf4j.Logger;
@@ -32,6 +34,9 @@ public class MailSendServiceImpl implements MailSenderService {
     @Autowired
     RandomNumberService randomNumberService ;
 
+    @Autowired
+    IdentifiedService identifiedService ;
+
     @Value("${spring.mail.username}")
     String fromMail;
 
@@ -40,7 +45,17 @@ public class MailSendServiceImpl implements MailSenderService {
         this.log.info("start to send mail to " + mail);
         Date startTime = new Date();
         try{
+            //生成验证码
+            String code = randomNumberService.redomNumber();
             SimpleMailMessage message = new SimpleMailMessage();
+            //构建验证码实体
+            Identified identified = new Identified();
+            identified.setCreatetime(new Date());
+            identified.setEmail(mail);
+            identified.setCode(code);
+            identified.setStatus("01");
+            //数据库中保存验证码
+            identifiedService.save(identified);
             message.setFrom(fromMail);
             //发给谁
             message.setTo(mail);
@@ -49,7 +64,7 @@ public class MailSendServiceImpl implements MailSenderService {
             //主题
             message.setSubject("welcome to Always close to you");
             //内容
-            message.setText("        您的验证码是： "+randomNumberService.redomNumber() +"  。 当前验证码5分钟内有效。 ");
+            message.setText("        您的验证码是： "+ code+"  。\r\n 当前验证码5分钟内有效。 ");
             //发送邮件
             javaMailSender.send(message);
 
