@@ -5,14 +5,12 @@ import com.mmxin.pojo.User;
 import com.mmxin.service.AuthorityService;
 import com.mmxin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,14 +34,15 @@ public class MainController {
      * 主页
      * todo: 之后有时间分析一下为啥不能拦截
      * */
-    @GetMapping(" ")
-    public String getNull(){
-        return "index";
+    @GetMapping("")
+    public ModelAndView getNull(Model model){
+        return new ModelAndView("index","index",model);
     }
 
     @GetMapping("index")
-    public String index(){
-        return "index";
+    public ModelAndView index(Model model){
+        //model.addAttribute("hello","hello");
+        return new ModelAndView("index","index",model);
     }
 
     /**

@@ -3,7 +3,9 @@ package com.mmxin.aspect;
 
 import com.alibaba.fastjson.JSON;
 import com.mmxin.mapper.RequestLogMapper;
+import com.mmxin.pojo.Menu;
 import com.mmxin.pojo.RequestLog;
+import com.mmxin.service.MenuService;
 import com.mmxin.service.RequestLogService;
 import org.apache.commons.lang.StringUtils;
 import org.aspectj.lang.JoinPoint;
@@ -13,13 +15,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.servlet.ModelAndView;
 import sun.misc.Request;
 
+import javax.jws.WebParam;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 切面
@@ -33,6 +39,13 @@ public class Aspect {
     @Autowired
     RequestLogService service ;
 
+    @Autowired
+    MenuService menuService ;
+
+    RequestLog requestLog ;
+
+    Date start ;
+
     @Pointcut("execution(* com.mmxin.controller.*.*(..))")
     public void log(){
         System.out.println("log()");
@@ -40,8 +53,17 @@ public class Aspect {
 
     @Before("log()")
     public void doBefore(JoinPoint joinPoint){
+        start = new Date();
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
         HttpServletRequest request = attributes.getRequest();
+
+        requestLog = new RequestLog();
+        requestLog.setIp(request.getRequestURI());
+        requestLog.setClassmethod(joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+        requestLog.setIp(this.getRealIp(request));
+        requestLog.setMethod(request.getMethod());
+        requestLog.setRequest(JSON.toJSONString(joinPoint.getArgs()));
+        requestLog.setRequesttime(start);
 
         //url
         logger.info("url={},method={},Ip={},class_method={},args={}", request.getRequestURI(),
@@ -49,18 +71,33 @@ public class Aspect {
                 joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName(),JSON.toJSONString(joinPoint.getArgs()));
     }
 
-    @After("log()")
-    public void doAfter(){
-        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
-        HttpServletRequest request = attributes.getRequest();
-        HttpServletResponse response = attributes.getResponse();
+    @AfterReturning(pointcut = "log()", returning = "returnObject")
+    public void doAfter(JoinPoint joinPoint,Object returnObject){
+        requestLog.setResponse(JSON.toJSONString(returnObject));
+        requestLog.setReponsetime(new Date(System.currentTimeMillis()));
+        requestLog.setUsetime(System.currentTimeMillis() - start.getTime());
+        System.out.println(returnObject.getClass().toString());
+        if (returnObject instanceof ModelAndView){
+            ModelAndView modelAndView = (ModelAndView) returnObject;
+            List<Menu> menuList=menuService.getInUseMenu();
+            modelAndView.getModel().put("allMenuList",menuList);
+        }
+        this.service.save(requestLog);
     }
 
-    @Around("log()")
+    //@Around("log()")
     public void aroundMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         //打印进入方法的时间
         Date begin = new Date();
+        //执行方法，获取返回值
         Object obejct = proceedingJoinPoint.proceed();
+        //对返回值的类型进行判断，如果是ModelAndView 类型，开始对参数进行修改，将菜单参数进行注入
+        if (obejct.getClass().equals("org.springframework.web.servlet.ModelAndView")){
+            ModelAndView modelAndView = (ModelAndView) obejct;
+            List<Menu> menuList=menuService.getInUseMenu();
+            modelAndView.getModelMap().addAttribute("allMenuList",menuList);
+        }
+
         //打印方法执行完毕的时间
         Date end = new Date();
         ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();

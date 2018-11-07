@@ -37,6 +37,12 @@
     <a href="/login">登录</a>
     <a href="/register">注册</a>
   </div>
+    <!--主页面菜单-->
+     <div th:each="menu : ${allMenuList}">
+         <th:if="${menu.position eq 'main'}}">
+                <a href="#" th:href="${menu.url}" text="#" th:text="${menu.title}" />
+         </th:if>
+     </div>
 </body>
 
 </html>
