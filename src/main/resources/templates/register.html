@@ -32,15 +32,40 @@
           <option value="2">女</option>
         </select>
       </div>
-      <div>
+       <div>
         <label for="identify">短信验证码</label>
         <input type="text" id="identify" name="identify" maxlength="6" placeholder="验证码">
+        <button type="button" id="getIdentify" th:text="点击获取验证码"></button>
       </div>
       <div>
         <button type="submit">提交</button>
       </div>
     </form>
   </div>
+  <script type="text/javascript">
+      $(function(){
+          //按钮单击时执行
+          $("#getIdentify").click(function(){
+              var email = document.getElementById("email").value;
+              if (email != null && email.length > 0){
+                  console.log(email);
+                  code=$.ajax({
+                      type:"POST",
+                      url:"/identify",
+                      data:"email="+ email,
+                      async:true
+                  });
+                  if (code.responseText == 'SUCCESS'){
+                      $("#email").innerHTML="发送成功";
+                  }
+              }else{
+                  console.log("点击了");
+                  $("#getIdentify").innerHTML="邮件格式有误";
+              }
+
+          });
+      });
+  </script>
   <div th:replace="~{fragments/footer :: footer}">...</div>
 </body>
 

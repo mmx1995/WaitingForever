@@ -1,5 +1,6 @@
 package com.mmxin.service.impl;
 
+import com.mmxin.configure.ReturnCodeEnum;
 import com.mmxin.pojo.Identify;
 import com.mmxin.service.IdentifiedService;
 import com.mmxin.service.MailSenderService;
@@ -64,17 +65,17 @@ public class MailSendServiceImpl implements MailSenderService {
             //主题
             message.setSubject("welcome to Always close to you");
             //内容
-            message.setText("        您的验证码是： "+ code+"  。\r\n 当前验证码5分钟内有效。 ");
+            message.setText("        您的验证码是： "+ code+"  。\r\n        当前验证码5分钟内有效。 ");
             //发送邮件
             javaMailSender.send(message);
             log.info("Send Mail success , cost {} million seconds",new Date().getTime() - startTime.getTime());
-            return MailSenderService.SUCCESS;
+            return ReturnCodeEnum.MailSenderSuccess;
         }catch (Exception e){
             log.error(e.getLocalizedMessage());
             log.error(e.getMessage());
             log.info("Send Mail failed , cost {} million seconds",new Date().getTime() - startTime.getTime());
             e.printStackTrace();
-            return MailSenderService.FILED;
+            return ReturnCodeEnum.MailSenderFailed;
         }
     }
 }
