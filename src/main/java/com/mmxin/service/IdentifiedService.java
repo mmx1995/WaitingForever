@@ -1,9 +1,13 @@
 package com.mmxin.service;
 
-import com.mmxin.pojo.Identified;
+import com.mmxin.pojo.Identify;
+
+import java.sql.SQLException;
 
 public interface IdentifiedService {
 
-    int save(Identified identified);
+    int save(Identify identified) throws SQLException;
+
+    Identify getByEmail(String email) ;
 
 }

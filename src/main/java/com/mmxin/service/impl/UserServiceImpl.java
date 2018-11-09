@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Override
     @Transactional
-    public int saveUser(User user) {
+    public int saveUser(User user) throws Exception {
             String password = user.getPassword();
             PasswordEncoder encoder = new BCryptPasswordEncoder();
             password = encoder.encode(password);

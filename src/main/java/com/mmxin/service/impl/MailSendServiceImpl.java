@@ -1,6 +1,6 @@
 package com.mmxin.service.impl;
 
-import com.mmxin.pojo.Identified;
+import com.mmxin.pojo.Identify;
 import com.mmxin.service.IdentifiedService;
 import com.mmxin.service.MailSenderService;
 import com.mmxin.service.RandomNumberService;
@@ -49,11 +49,11 @@ public class MailSendServiceImpl implements MailSenderService {
             String code = randomNumberService.redomNumber();
             SimpleMailMessage message = new SimpleMailMessage();
             //构建验证码实体
-            Identified identified = new Identified();
+            Identify identified = new Identify();
             identified.setCreatetime(new Date());
             identified.setEmail(mail);
             identified.setCode(code);
-            identified.setStatus("01");
+            identified.setStatus("1");
             //数据库中保存验证码
             identifiedService.save(identified);
             message.setFrom(fromMail);
@@ -67,14 +67,14 @@ public class MailSendServiceImpl implements MailSenderService {
             message.setText("        您的验证码是： "+ code+"  。\r\n 当前验证码5分钟内有效。 ");
             //发送邮件
             javaMailSender.send(message);
-
             log.info("Send Mail success , cost {} million seconds",new Date().getTime() - startTime.getTime());
+            return MailSenderService.SUCCESS;
         }catch (Exception e){
             log.error(e.getLocalizedMessage());
             log.error(e.getMessage());
             log.info("Send Mail failed , cost {} million seconds",new Date().getTime() - startTime.getTime());
-
+            e.printStackTrace();
+            return MailSenderService.FILED;
         }
-        return null;
     }
 }

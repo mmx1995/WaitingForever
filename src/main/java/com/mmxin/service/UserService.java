@@ -17,7 +17,7 @@ public interface UserService {
      * @param user
      * @return
      */
-    int saveUser(User user);
+    int saveUser(User user) throws Exception;
 
     /**
      * 删除用户

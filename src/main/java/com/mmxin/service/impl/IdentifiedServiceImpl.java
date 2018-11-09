@@ -1,19 +1,43 @@
 package com.mmxin.service.impl;
 
-import com.mmxin.mapper.IdentifiedMapper;
-import com.mmxin.pojo.Identified;
+import com.mmxin.mapper.IdentifyMapper;
+import com.mmxin.pojo.Identify;
 import com.mmxin.service.IdentifiedService;
+import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 @Service
 public class IdentifiedServiceImpl implements IdentifiedService {
 
     @Autowired
-    IdentifiedMapper mapper ;
+    SqlSessionFactory sqlSessionFactory;
+
+    @Autowired
+    IdentifyMapper mapper;
+
+
+
+    @Transactional
+    @Override
+    public int save(Identify identified) throws SQLException {
+        /*Connection connection = sqlSessionFactory.openSession().getConnection();
+        String sql = "insert into identified(email,code,status) values ( ?,?,?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1,identified.getEmail());
+        preparedStatement.setString(2,identified.getCode());
+        preparedStatement.setString(3,identified.getStatus());
+        int i  = preparedStatement.executeUpdate();*/
+        return this.mapper.insertSelective(identified);
+    }
 
     @Override
-    public int save(Identified identified) {
-        return mapper.insert(identified);
+    public Identify getByEmail(String email) {
+        return this.mapper.selectByEmail(email);
     }
 }
