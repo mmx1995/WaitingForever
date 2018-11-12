@@ -46,21 +46,22 @@
       $(function(){
           //按钮单击时执行
           $("#getIdentify").click(function(){
-              var email = document.getElementById("email").value;
-              if (email != null && email.length > 0){
-                  console.log(email);
-                  code=$.ajax({
-                      type:"POST",
-                      url:"/identify",
-                      data:"email="+ email,
-                      async:true
+              var input_email = document.getElementById("email").value;
+              if (input_email != null && input_email.length > 0){
+                  console.log(input_email);
+                  $.ajax({
+                      url:"/identify/" + input_email,
+                      async:true,
+                      success:function (msg) {
+                          console.log(msg);
+                          if (msg == 'SUCCESS'){
+                              document.getElementById("getIdentify").innerHTML="邮件发送成功";
+                              document.getElementById("getIdentify").disable = false ;
+                          }
+                      }
                   });
-                  if (code.responseText == 'SUCCESS'){
-                      $("#email").innerHTML="发送成功";
-                  }
               }else{
-                  console.log("点击了");
-                  $("#getIdentify").innerHTML="邮件格式有误";
+                  document.getElementById("getIdentify").innerHTML="邮件发送成功";
               }
 
           });
