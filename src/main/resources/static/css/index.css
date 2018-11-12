@@ -3,23 +3,19 @@
 body {
   background-color: #f5f6f7;
 }
-
 /*头部*/
 .home-header {
   background: #fff;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .05);
   min-width: 1200px;
 }
-
 .home-logo {
   display: block;
   margin: 3px 0 0 100px;
 }
-
 .first-level-menu {
   font-size: 0;
 }
-
 .first-level-menu a, .release-news a, .login-register a {
   color: #3D3D3D;
   display: inline-block;
@@ -29,7 +25,6 @@ body {
   margin: 0 7px 0 7px;
   text-align: center;
 }
-
 .home-search {
   border: 1px solid #CCC;
   border-radius: 4px;
@@ -38,7 +33,6 @@ body {
   margin-top: 7px;
   width: 107px;
 }
-
 .input-search {
   background: 0 0;
   border: 0;
@@ -52,7 +46,6 @@ body {
   width: 70px;
   outline: none;
 }
-
 .a-search {
   background-color: rgba(0, 0, 0, 0);
   color: #ccc;
@@ -64,23 +57,19 @@ body {
   text-align: center;
   width: 26px;
 }
-
 #sousuo {
   height: 18px;
   width: 18px;
 }
-
 .login-register {
   margin-right: 100px;
 }
-
 /*左导航栏*/
 .home-nav {
   background-color: white;
   margin: 10px 14px 0 120px;
   width: 96px;
 }
-
 .home-nav-menu {
   cursor: pointer;
   height: 32px;
@@ -89,24 +78,20 @@ body {
   width: 96px;
   margin-bottom: 1px;
 }
-
 .home-nav-menu:hover {
   background-color: #f44444;
   color: white;
 }
-
 .home-nav-active {
   background-color: #f44444;
   color: white;
 }
-
 /*中主体内容*/
 /*广告位*/
 .adv-position {
   margin-top: 10px;
   position: relative;
 }
-
 .adv-hint {
   border: 1px solid white;
   bottom: 10px;
@@ -116,22 +101,18 @@ body {
   padding: 0 2px;
   position: absolute;
 }
-
 /*轮播图*/
 .swiper-container {
   width: 508px;
   height: 206px;
   margin-left: 0;
 }
-
 .swiper-container:hover .swiper-button-next {
   display: block;
 }
-
 .swiper-container:hover .swiper-button-prev {
   display: block;
 }
-
 .swiper-slide {
   text-align: center;
   font-size: 18px;
@@ -149,21 +130,17 @@ body {
   -webkit-align-items: center;
   align-items: center;
 }
-
 .swiper-button-next {
   background-image: none;
   display: none;
 }
-
 .swiper-button-prev {
   background-image: none;
   display: none;
 }
-
 .swiper-pagination {
   text-align: left !important;
 }
-
 .swiper-pagination-bullet-active {
   /*background: #007aff !important;
   border-radius: 35% !important;
@@ -171,49 +148,40 @@ body {
   width: 20px !important;*/
   animation:bullet-active 3.2s linear infinite;
 }
-
 svg {
   fill: #fff;
   width: 16px;
   height: 24px;
 }
-
 .slide-img {
   display: block;
   height: 100%;
   width: 100%;
 }
-
 .swiper-pagination-bullets {
   bottom: 5px !important;
 }
-
 .slide-title {
   color: white;
   left: 10px;
   position: absolute;
   bottom: 30px;
 }
-
 /*推荐位*/
 .recommend-parent{
   margin: 0 0 0 2px;
 }
-
 .small-recommend{
   position: relative;
 }
-
 .recommend-upper{
   display: block;
   height: 102px;
   width: 250px;
 }
-
 .recommend-parent .small-recommend:nth-child(2) .recommend-upper{
   margin: 2px 0 0 0;
 }
-
 .recommend-text{
   width: 100%;
   padding: 46px 10px 0;
@@ -231,4 +199,48 @@ svg {
   overflow: hidden;
   color: #fff;
   text-align: left;
+}
+/*文章列表*/
+.art-list-parent{
+  margin-top:8px;
+}
+.art-list{
+  padding: 18px 24px;
+  background: #fff;
+  border-bottom: 1px solid #f4f4f4;
+}
+.art-title{
+  color:#3d3d3d;
+  display:block;
+  font-size:18px;
+  font-weight:700;
+  height:24px;
+  line-height:24px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.art-title:hover{
+  color: #ca0c16;
+}
+.art-author{
+  color:#3d3d3d;
+  display:inline-block;
+  line-height:24px;
+  max-width:120px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+.art-time{
+  color:#8a8a8a;
+  line-height:24px;
+}
+.art-read-vol{
+  color:#8a8a8a;
+  line-height:24px;
+}
+.art-comment{
+  color:#8a8a8a;
+  line-height:24px;
 }
