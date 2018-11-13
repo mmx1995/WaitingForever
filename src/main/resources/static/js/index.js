@@ -37,6 +37,8 @@ if (curAdd.indexOf('www.dnforever.com') == -1) {
 $('.home-nav-menu').click(function() {
   $('.home-nav-menu').removeClass('home-nav-active');
   $(this).addClass('home-nav-active');
+  console.log(virtualData);
+  console.log(curAdd.indexOf('www.dnforever.com') == -1);
 });
 //swiper轮播图
 var swiper = new Swiper('.swiper-container', {
