@@ -32,7 +32,7 @@
           <option value="2">女</option>
         </select>
       </div>
-       <div>
+      <div>
         <label for="identify">短信验证码</label>
         <input type="text" id="identify" name="identify" maxlength="6" placeholder="验证码">
         <button type="button" id="getIdentify" th:text="点击获取验证码"></button>
@@ -43,29 +43,29 @@
     </form>
   </div>
   <script type="text/javascript">
-      $(function(){
-          //按钮单击时执行
-          $("#getIdentify").click(function(){
-              var input_email = document.getElementById("email").value;
-              if (input_email != null && input_email.length > 0){
-                  console.log(input_email);
-                  $.ajax({
-                      url:"/identify/" + input_email,
-                      async:true,
-                      success:function (msg) {
-                          console.log(msg);
-                          if (msg == 'SUCCESS'){
-                              document.getElementById("getIdentify").innerHTML="邮件发送成功";
-                              document.getElementById("getIdentify").disable = false ;
-                          }
-                      }
-                  });
-              }else{
-                  document.getElementById("getIdentify").innerHTML="邮件发送成功";
-              }
+  $(function() {
+    //按钮单击时执行
+    $("#getIdentify").click(function() {
+      var input_email = document.getElementById("email").value;
+      if (input_email != null && input_email.length > 0) {
+        console.log(input_email);
+        $.ajax({
+          url: "/identify/" + input_email,
+          async: true,
+          success: function(msg) {
+            console.log(msg);
+            if (msg == 'SUCCESS') {
+              document.getElementById("getIdentify").innerHTML = "邮件发送成功";
+              document.getElementById("getIdentify").disable = false;
+            }
+          }
+        });
+      } else {
+        document.getElementById("getIdentify").innerHTML = "邮件发送成功";
+      }
 
-          });
-      });
+    });
+  });
   </script>
   <div th:replace="~{fragments/footer :: footer}">...</div>
 </body>

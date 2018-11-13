@@ -37,24 +37,24 @@ if (curAdd.indexOf('www.dnforever.com') == -1) {
 $('.home-nav-menu').click(function() {
   $('.home-nav-menu').removeClass('home-nav-active');
   $(this).addClass('home-nav-active');
-  console.log(virtualData);
-  console.log(curAdd.indexOf('www.dnforever.com') == -1);
+  console.log('测试数据', virtualData);
+  console.log('是否是本地', curAdd.indexOf('www.dnforever.com') == -1);
 });
 //swiper轮播图
-var swiper = new Swiper('.swiper-container', {
+var swiperOne = new Swiper('.swiper-container-one', {
   slidesPerView: 1,
   spaceBetween: 30,
   loop: true,
   autoplay: {
     disableOnInteraction: false,
   },
-  autoplayDisableOnInteraction:true,
+  autoplayDisableOnInteraction: true,
   pagination: {
-    el: '.swiper-pagination',
+    el: '.swiper-pagination-one',
     clickable: true,
   },
   navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
+    nextEl: '.swiper-button-next-one',
+    prevEl: '.swiper-button-prev-one',
   },
 });

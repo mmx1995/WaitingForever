@@ -65,10 +65,10 @@ body {
   margin-right: 100px;
 }
 /*左导航栏*/
-.home-container{
-  width:1228px;
-  padding:10px 22px 0 22px;
-  margin:0 auto;
+.home-container {
+  width: 1228px;
+  padding: 10px 22px 0 22px;
+  margin: 0 auto;
 }
 .home-nav {
   background-color: white;
@@ -92,8 +92,8 @@ body {
   color: white;
 }
 /*中主体内容*/
-.sub-content{
-  margin-right:14px;
+.sub-content {
+  margin-right: 14px;
 }
 /*广告位*/
 .adv-position {
@@ -109,15 +109,15 @@ body {
   position: absolute;
 }
 /*轮播图*/
-.swiper-container {
+.swiper-container-one {
   width: 508px;
   height: 206px;
   margin-left: 0;
 }
-.swiper-container:hover .swiper-button-next {
+.swiper-container:hover .swiper-button-next-one {
   display: block;
 }
-.swiper-container:hover .swiper-button-prev {
+.swiper-container:hover .swiper-button-prev-one {
   display: block;
 }
 .swiper-slide {
@@ -137,15 +137,15 @@ body {
   -webkit-align-items: center;
   align-items: center;
 }
-.swiper-button-next {
+.swiper-button-next-one {
   background-image: none;
   display: none;
 }
-.swiper-button-prev {
+.swiper-button-prev-one {
   background-image: none;
   display: none;
 }
-.swiper-pagination {
+.swiper-pagination-one {
   text-align: left !important;
 }
 .swiper-pagination-bullet-active {
@@ -153,7 +153,7 @@ body {
   border-radius: 35% !important;
   opacity: 1 !important;
   width: 20px !important;*/
-  animation:bullet-active 3.2s linear infinite;
+  animation: bullet-active 3.2s linear infinite;
 }
 svg {
   fill: #fff;
@@ -175,21 +175,21 @@ svg {
   bottom: 30px;
 }
 /*推荐位*/
-.recommend-parent{
+.recommend-parent {
   margin: 0 0 0 2px;
 }
-.small-recommend{
+.small-recommend {
   position: relative;
 }
-.recommend-upper{
+.recommend-upper {
   display: block;
   height: 102px;
   width: 250px;
 }
-.recommend-parent .small-recommend:nth-child(2) .recommend-upper{
+.recommend-parent .small-recommend:nth-child(2) .recommend-upper {
   margin: 2px 0 0 0;
 }
-.recommend-text{
+.recommend-text {
   width: 100%;
   padding: 46px 10px 0;
   position: absolute;
@@ -197,10 +197,10 @@ svg {
   left: 0;
   height: 70px;
   z-index: 999;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-  background-image: -webkit-gradient(linear,left top, left bottom,from(rgba(0,0,0,0)),color-stop(97%, rgba(0,0,0,0.4)));
-  background-image: -webkit-linear-gradient(top,rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 97%);
-  background-image: linear-gradient(-180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,0.4) 97%);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+  background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), color-stop(97%, rgba(0, 0, 0, 0.4)));
+  background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 97%);
+  background-image: linear-gradient(-180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.4) 97%);
   font-size: 12px;
   line-height: 16px;
   overflow: hidden;
@@ -208,46 +208,46 @@ svg {
   text-align: left;
 }
 /*文章列表*/
-.art-list-parent{
-  margin-top:8px;
+.art-list-parent {
+  margin-top: 8px;
 }
-.art-list{
+.art-list {
   padding: 18px 24px;
   background: #fff;
   border-bottom: 1px solid #f4f4f4;
 }
-.art-title{
-  color:#3d3d3d;
-  display:block;
-  font-size:18px;
-  font-weight:700;
-  height:24px;
-  line-height:24px;
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
-}
-.art-title:hover{
-  color: #ca0c16;
-}
-.art-author{
-  color:#3d3d3d;
-  display:inline-block;
-  line-height:24px;
-  max-width:120px;
-  overflow:hidden;
-  text-overflow:ellipsis;
+.art-title {
+  color: #3d3d3d;
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
 }
-.art-time{
-  color:#8a8a8a;
-  line-height:24px;
+.art-title:hover {
+  color: #ca0c16;
 }
-.art-read-vol{
-  color:#8a8a8a;
-  line-height:24px;
+.art-author {
+  color: #3d3d3d;
+  display: inline-block;
+  line-height: 24px;
+  max-width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.art-comment{
-  color:#8a8a8a;
-  line-height:24px;
+.art-time {
+  color: #8a8a8a;
+  line-height: 24px;
+}
+.art-read-vol {
+  color: #8a8a8a;
+  line-height: 24px;
+}
+.art-comment {
+  color: #8a8a8a;
+  line-height: 24px;
 }
