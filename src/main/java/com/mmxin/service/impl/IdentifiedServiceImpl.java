@@ -26,13 +26,6 @@ public class IdentifiedServiceImpl implements IdentifiedService {
     @Transactional
     @Override
     public int save(Identify identified) throws SQLException {
-        /*Connection connection = sqlSessionFactory.openSession().getConnection();
-        String sql = "insert into identified(email,code,status) values ( ?,?,?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1,identified.getEmail());
-        preparedStatement.setString(2,identified.getCode());
-        preparedStatement.setString(3,identified.getStatus());
-        int i  = preparedStatement.executeUpdate();*/
         return this.mapper.insertSelective(identified);
     }
 

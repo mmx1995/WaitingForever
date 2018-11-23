@@ -3,9 +3,11 @@ package com.mmxin.controller;
 import com.mmxin.configure.ReturnCodeEnum;
 import com.mmxin.pojo.Authority;
 import com.mmxin.pojo.Identify;
+import com.mmxin.pojo.Story;
 import com.mmxin.pojo.User;
 import com.mmxin.service.AuthorityService;
 import com.mmxin.service.IdentifiedService;
+import com.mmxin.service.StoryService;
 import com.mmxin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,6 +41,9 @@ public class MainController {
     @Autowired
     private IdentifiedService identifiedService ;
 
+    @Autowired
+    private StoryService storyService;
+
     /**
      * 主页
      * todo: 之后有时间分析一下为啥不能拦截
@@ -48,9 +53,14 @@ public class MainController {
         return new ModelAndView("index","index",model);
     }
 
+    /**
+     * 主页面
+     * 1、应当包含的内容放置的故事的类型
+     * */
     @GetMapping("index")
     public ModelAndView index(Model model){
-        //model.addAttribute("hello","hello");
+        List<Story> list = this.storyService.getIndex();
+        model.addAttribute("indexStory",list);
         return new ModelAndView("index","index",model);
     }
 

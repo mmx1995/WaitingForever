@@ -195,4 +195,12 @@
       createTime = #{createtime,jdbcType=TIMESTAMP}
     where storyId = #{storyid,jdbcType=INTEGER}
   </update>
+  <select id="selectAll" resultMap="ResultMapWithBLOBs">
+    select
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from story
+  </select>
+
 </mapper>
