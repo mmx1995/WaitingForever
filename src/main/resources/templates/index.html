@@ -3,17 +3,25 @@
 
 <head th:replace="~{fragments/header :: header}">
   <meta charset="utf-8">
+  <!--服务器-->
   <link href="css/bootstrap.min.css" rel="stylesheet" />
   <link href="css/swiper.min.css" rel="stylesheet">
   <link href="css/common.css" rel="stylesheet" />
   <link href="css/index.css" rel="stylesheet" />
   <link href="css/anim.css" rel="stylesheet">
+  <!--本地-->
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../static/css/swiper.min.css" rel="stylesheet">
+  <link href="../static/css/common.css" rel="stylesheet" />
+  <link href="../static/css/index.css" rel="stylesheet" />
+  <link href="../static/css/anim.css" rel="stylesheet">
 </head>
 
 <body>
   <div class="home-header clearfix">
     <a href="" class="home-logo pull-left">
-      <img src="img/favicon.ico" alt="WaitingForever首页" title="WaitingForever首页">
+      <!--<img src="img/favicon.ico" alt="WaitingForever首页" title="WaitingForever首页">-->
+      <img src="../static/img/favicon.ico" alt="WaitingForever首页" title="WaitingForever首页">
     </a>
     <div class="first-level-menu pull-left">
       <a href="">菜单链接一</a>
@@ -50,7 +58,8 @@
     <div class="sub-content pull-left">
       <div class="adv-position">
         <a href="">
-          <img src="img/adv-img.jpg" alt="" class="adv-img">
+          <!--<img src="img/adv-img.jpg" alt="" class="adv-img">-->
+          <img src="../static/img/adv-img.jpg" alt="" class="adv-img">
         </a>
         <p class="adv-hint">广告</p>
       </div>
@@ -59,20 +68,25 @@
           <div class="swiper-container swiper-container-one">
             <div class="swiper-wrapper">
               <div class="swiper-slide">
-                <img src="img/slide-1.jpg" alt="" class="slide-img">
+                <!--<img src="img/slide-1.jpg" alt="" class="slide-img">-->
+                <img src="../static/img/slide-1.jpg" alt="" class="slide-img">
                 <p class="slide-title">超人不会飞</p>
               </div>
               <div class="swiper-slide">
-                <img src="img/slide-1.jpg" alt="" class="slide-img">
+                <!--<img src="img/slide-1.jpg" alt="" class="slide-img">-->
+                <img src="../static/img/slide-1.jpg" alt="" class="slide-img">
               </div>
               <div class="swiper-slide">
-                <img src="img/slide-1.jpg" alt="" class="slide-img">
+                <!--<img src="img/slide-1.jpg" alt="" class="slide-img">-->
+                <img src="../static/img/slide-1.jpg" alt="" class="slide-img">
               </div>
               <div class="swiper-slide">
-                <img src="img/slide-1.jpg" alt="" class="slide-img">
+                <!--<img src="img/slide-1.jpg" alt="" class="slide-img">-->
+                <img src="../static/img/slide-1.jpg" alt="" class="slide-img">
               </div>
               <div class="swiper-slide">
-                <img src="img/slide-1.jpg" alt="" class="slide-img">
+                <!--<img src="img/slide-1.jpg" alt="" class="slide-img">-->
+                <img src="../static/img/slide-1.jpg" alt="" class="slide-img">
               </div>
             </div>
             <div class="swiper-pagination swiper-pagination-one"></div>
@@ -90,11 +104,13 @@
         </div>
         <div class="pull-left recommend-parent">
           <div class="small-recommend">
-            <img src="img/recommend-upper.jpg" alt="" class="recommend-upper">
+            <!--<img src="img/recommend-upper.jpg" alt="" class="recommend-upper">-->
+            <img src="../static/img/recommend-upper.jpg" alt="" class="recommend-upper">
             <p class="recommend-text">PHP已死？</p>
           </div>
           <div class="small-recommend">
-            <img src="img/recommend-upper.jpg" alt="" class="recommend-upper">
+            <!--<img src="img/recommend-upper.jpg" alt="" class="recommend-upper">-->
+            <img src="../static/img/recommend-upper.jpg" alt="" class="recommend-upper">
             <p class="recommend-text">PHP已死？</p>
           </div>
         </div>
@@ -121,14 +137,13 @@
                   </div>
               </li>
           </ol>
-
-
       </div>
     </div>
     <div class="pre-rec pull-left">
       <div class="adv-position">
         <a href="">
-          <img src="img/small-adv-img.jpg" alt="" class="small-adv-img">
+          <!--<img src="img/small-adv-img.jpg" alt="" class="small-adv-img">-->
+          <img src="../static/img/small-adv-img.jpg" alt="" class="small-adv-img">
         </a>
         <p class="adv-hint">广告</p>
       </div>
@@ -148,10 +163,16 @@
     </div>
   </div>
   <div th:replhome-nav-menuace="~{fragments/footer :: footer}">...</div>
+  <!--服务器-->
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/swiper.min.js"></script>
   <script src="js/index.js"></script>
+  <!--本地-->
+  <script src="../static/js/jquery-3.3.1.min.js"></script>
+  <script src="../static/js/bootstrap.min.js"></script>
+  <script src="../static/js/swiper.min.js"></script>
+  <script src="../static/js/index.js"></script>
 </body>
 
 </html>
