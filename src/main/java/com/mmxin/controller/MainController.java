@@ -49,8 +49,8 @@ public class MainController {
      * todo: 之后有时间分析一下为啥不能拦截
      * */
     @GetMapping("")
-    public ModelAndView getNull(Model model){
-        return new ModelAndView("index","index",model);
+    public String getNull(Model model){
+        return "redirect:/index";
     }
 
     /**
@@ -63,6 +63,7 @@ public class MainController {
         model.addAttribute("indexStory",list);
         return new ModelAndView("index","index",model);
     }
+
 
     /**
      * 注册
